@@ -21,6 +21,7 @@ class BaseModel:
             *arg (any): Unused.
             **kwargs (dict): Key/value pairs of attributes.
         """
+        from models import storage
         self.id = str(uuid4())
         self.created_at = self.updated_at = datetime.utcnow()
         if kwargs:
@@ -33,6 +34,8 @@ class BaseModel:
     def save(self):
         """Update updated_at with the current datetime."""
         self.updated_at = datetime.utcnow()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Return a dictionary repreentation of the BaseModel instance.
