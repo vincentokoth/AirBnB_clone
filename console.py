@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
             kwargs = {}
             for i in range(1, len(my_list)):
                 key, value = tuple(my_list[i].split("="))
-                if  value[0] == '"':
+                if value[0] == '"':
                     value = value.strip('"').replace("_", " ")
                 else:
                     try:
@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
             if len(my_list) < 2:
                 raise IndexError()
             objects = storage.all()
-            key =my_list[0] + '.' + my_list[1]
+            key = my_list[0] + '.' + my_list[1]
             if key in objects:
                 print(objects[key])
             else:
@@ -159,7 +159,7 @@ class HBNBCommand(cmd.Cmd):
             my_list = split(line, " ")
             if my_list[0] not in self.__classes:
                 raise NameError()
-            if len(my_list)< 2:
+            if len(my_list) < 2:
                 raise IndexError()
             objects = storage.all()
             key = my_list[0] + '.' + my_list[1]
